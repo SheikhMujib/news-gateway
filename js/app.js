@@ -24,13 +24,13 @@ const loadNews = async (category_id) => {
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data);
-    console.log(data.data);
+    // console.log(data);
 }
 
 const displayNews = allNews => {
-
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``;
+
     //Display No News Found Message
     const noNews = document.getElementById('no-news');
     if (allNews.length === 0) {
@@ -39,8 +39,14 @@ const displayNews = allNews => {
     else {
         noNews.classList.add('d-none');
     }
+
+    //To show news numbers
+    const newsNumberDiv = document.getElementById('news-numbers-container');
+    newsNumberDiv.innerHTML = `<h3 class="text-warning text-center">${allNews.length} items found for this category.</h3>`
+
     // Display all news
     allNews.forEach(news => {
+        console.log(news);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-4');
         newsDiv.innerHTML = `
