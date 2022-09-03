@@ -1,3 +1,4 @@
+// Load Categories
 const loadCategories = async () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`
     const res = await fetch(url);
@@ -5,9 +6,10 @@ const loadCategories = async () => {
     displayCategories(data.data.news_category);
 }
 
+// Display Categories
 const displayCategories = categories => {
-
     const categoriesContainer = document.getElementById('categories-container');
+
     categories.forEach(category => {
         const categoryLi = document.createElement('li');
         categoryLi.classList.add('nav-item');
@@ -16,10 +18,13 @@ const displayCategories = categories => {
         `;
         categoriesContainer.appendChild(categoryLi);
     });
+
     // console.log(categories);
 }
 
+// Load News
 const loadNews = async (category_id) => {
+    toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     const res = await fetch(url);
     const data = await res.json();
@@ -27,6 +32,7 @@ const loadNews = async (category_id) => {
     // console.log(data);
 }
 
+// Display News
 const displayNews = allNews => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``;
@@ -46,7 +52,6 @@ const displayNews = allNews => {
 
     // Display all news
     allNews.forEach(news => {
-        console.log(news);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-4');
         newsDiv.innerHTML = `
@@ -80,8 +85,18 @@ const displayNews = allNews => {
         newsContainer.appendChild(newsDiv);
     });
     // console.log(data);
+    toggleSpinner(false);           //Stop Spinner
 }
 
+const toggleSpinner = isLoading => {
+    const spinnerSection = document.getElementById('spinner');
+    if (isLoading) {
+        spinnerSection.classList.remove('d-none')
+    }
+    else {
+        spinnerSection.classList.add('d-none');
+    }
+}
 // loadNews();
 
 
