@@ -10,9 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
     <header>
-        <div class="container">
+        <div class="container mt-3">
             <nav class="navbar navbar-expand-md bg-light fs-5">
                 <div class="container-fluid">
                     <a class="navbar-brand text-primary fw-semibold" href="#"><span
@@ -57,10 +57,21 @@
                 </div>
             </nav>
         </section>
-        <!-- News Display Section -->
+
         <section>
+            <!-- News numbers -->
+            <div class="mt-5 d-none">
+                <h3 class="text-warning text-center">4 items found for category Entertainment.</h3>
+            </div>
+
+            <!-- No News Found Message -->
+            <div id="no-news" class="mt-5 d-none">
+                <h3 class="text-warning text-center">No News Found.</h3>
+            </div>
+
+            <!-- News Display Section -->
             <div id="news-container" class="container mt-5">
-                
+
             </div>
         </section>
     </main>

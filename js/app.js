@@ -30,6 +30,16 @@ const loadNews = async (category_id) => {
 const displayNews = allNews => {
 
     const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = ``;
+    //Display No News Found Message
+    const noNews = document.getElementById('no-news');
+    if (allNews.length === 0) {
+        noNews.classList.remove('d-none');
+    }
+    else {
+        noNews.classList.add('d-none');
+    }
+    // Display all news
     allNews.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-4');
