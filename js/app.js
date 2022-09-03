@@ -27,25 +27,39 @@ const loadNews = async (category_id) => {
     console.log(data.data);
 }
 
-const displayNews = cards => {
+const displayNews = allNews => {
 
     const newsContainer = document.getElementById('news-container');
-    cards.forEach(card => {
+    allNews.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-4');
         newsDiv.innerHTML = `
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${card.thumbnail_url}" class="img-fluid rounded-start p-3" alt="...">
+        <div class="col-md-4">
+            <img src="${news.thumbnail_url}" class="img-fluid rounded-start p-3" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">${news.title}</h5>
+                <p class="card-text">${news.details}</p>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">${card.title}</h5>
-                    <p class="card-text">${card.details}</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <div class="row row-cols-4 pt-3 d-flex justify-content-between">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                           <img src="${news.author.img}" class="img-fluid rounded-circle">
+                        </div>
+                        <div class="col">
+                            ${news.author.name}
+                        </div>
+                    </div>
                 </div>
+                <div class="col">${news.total_view}</div>
+                
+                <div class="col">Read More Button</div>
             </div>
         </div>
+    </div>
         `;
         newsContainer.appendChild(newsDiv);
     });
