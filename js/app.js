@@ -12,7 +12,7 @@ const displayCategories = categories => {
         const categoryLi = document.createElement('li');
         categoryLi.classList.add('nav-item');
         categoryLi.innerHTML = `
-        <a onclick="loadNews('${category.category_id}')" class="nav-link px-3" href="#">${category.category_name}</a>
+        <button onclick="loadNews('${category.category_id}')" class="nav-link px-3">${category.category_name}</button>
         `;
         categoriesContainer.appendChild(categoryLi);
     });
@@ -23,12 +23,37 @@ const loadNews = async (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
+    displayNews(data.data);
+    console.log(data.data);
 }
 
-// const displayNews = news =>{
+const displayNews = cards => {
 
-// }
+    const newsContainer = document.getElementById('news-container');
+    cards.forEach(card => {
+        const newsDiv = document.createElement('div');
+        newsDiv.classList.add('card', 'mb-4');
+        newsDiv.innerHTML = `
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${card.thumbnail_url}" class="img-fluid rounded-start p-3" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">${card.title}</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+        `;
+        newsContainer.appendChild(newsDiv);
+    });
+    // console.log(data);
+}
+
 // loadNews();
 
 
