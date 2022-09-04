@@ -77,7 +77,11 @@ const displayNews = allNews => {
                 </div>
                 <div class="col">${news.total_view}</div>
                 
-                <div class="col">Read More Button</div>
+                <div class="col">
+                    <button onclick="loadNewsDetails('${news._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewsDetailsModal" href="#">
+                        News Details
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -99,6 +103,24 @@ const toggleSpinner = isLoading => {
 }
 // loadNews();
 
+// Load News Details
+const loadNewsDetails = async news_id => {
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data[0]);
+}
+
+const displayNewsDetails = news => {
+    console.log(news);
+    const modalTitle = document.getElementById('NewsDetailsModalLabel');
+    modalTitle.innerText = news.title;
+    const newsDetails = document.getElementById('news-details');
+    newsDetails.innerHTML = `
+    <p><span>Author: ${news.author.name ? news.author.name : 'No data available'}</span> <span>Total Views: ${news.total_view ? news.total_view : 'No data available'}</span></p>
+    <p>${news.details}</p>
+    `
+}
 
 loadCategories();
 
