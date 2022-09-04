@@ -41,7 +41,7 @@
         <section class="mt-5">
             <div class="container text-center fs-5">
                 <div class="row row-cols-1">
-                    <div class="col">
+                    <div class="col mb-3">
                         <p class="fw-bold fs-4">Q1. What is the differences between var, let, and const?</p>
                         <table class="table table-hover">
                             <thead>
@@ -54,19 +54,16 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <!-- <th scope="row">1</th> -->
                                     <td>The scope of a var variable is functional scope.</td>
                                     <td>The scope of a let variable is block scope.</td>
                                     <td>The scope of a const variable is block scope.</td>
                                 </tr>
                                 <tr>
-                                    <!-- <th scope="row">2</th> -->
                                     <td>It can be updated and re-declared into the scope.</td>
                                     <td>It can be updated but cannot be re-declared into the scope.</td>
                                     <td>It cannot be updated or re-declared into the scope.</td>
                                 </tr>
                                 <tr>
-                                    <!-- <th scope="row">3</th> -->
                                     <td>It can be declared without initialization.</td>
                                     <td>It can be declared without initialization.</td>
                                     <td>It cannot be declared without initialization.</td>
@@ -80,7 +77,6 @@
                                         initialization.</td>
                                 </tr>
                                 <tr>
-                                    <!-- <th scope="row">1</th> -->
                                     <td>hoisting done , with initializing as ‘default’ value</td>
                                     <td>Hoisting is done , but not initialized (this is the reason for error when we
                                         access the let variable before declaration/initialization</td>
@@ -90,9 +86,69 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col">Column</div>
-                    <div class="col">Column</div>
-                    <div class="col">Column</div>
+                    <div class="col">
+                        <div class="row row-cols-1">
+                            <div class="col">
+                                <p class="fw-bold fs-4">Q2. What is the difference between regular functions and arrow
+                                    functions?
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>According to MDN, An arrow function expression is a syntactically compact alternative
+                                    to a regular function expression, although without its own bindings to the this,
+                                    arguments, super, or new.target keywords. Arrow function expressions are ill suited
+                                    as methods, and they cannot be used as constructors.
+
+                                    There are 3 subtle differences in regular functions and arrow functions</p>
+                            </div>
+                            <div class="col">
+                                <h5>i) No own this bindings</h5>
+                                <p>Arrow functions do not have their own this value. The value of this inside an arrow
+                                    function is always inherited from the enclosing scope. the arrow function changed
+                                    the this object outside its scope. The regular function just made the changes within
+                                    its own this.</p>
+                            </div>
+                            <div class="col">
+                                <h5>ii) Arrow functions do not have a arguments array</h5>
+                                <p>In JS arguments array in functions is a special object that can be used to get all
+                                    the arguments passed to the function. Similar to this, arrow functions do not have
+                                    their own binding to a arguments object, they are bound to arguments of enclosing
+                                    scope.</p>
+                            </div>
+                            <div class="col">
+                                <h5>iii) Arrow functions are callable but not constructable</h5>
+                                <p>If a function is constructable, it can be called with new, i.e. new User(). If a
+                                    function is callable, it can be called without new (i.e. normal function call).
+
+                                    Functions created through function declarations / expressions are both constructable
+                                    and callable.
+
+                                    Arrow functions (and methods) are only callable. class constructors are only
+                                    constructable.
+
+                                    If you are trying to call a non-callable function or to construct a
+                                    non-constructable function, you will get a runtime error.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row row-cols-1">
+                            <div class="col">
+                                <p class="fw-bold fs-4">Q3. Why should we use Template literals (Template strings)?</p>
+                            </div>
+                            <div class="col">
+                                <p>Template literals are literals delimited with backtick (`) characters, allowing for
+                                    multi-line strings, for string interpolation with embedded expressions, and for
+                                    special constructs called tagged templates.
+
+                                    Template literals are sometimes informally called template strings, because they are
+                                    used most commonly for string interpolation (to create strings by doing substitution
+                                    of placeholders). However, a tagged template literal may not result in a string; it
+                                    can be used with a custom tag function to perform whatever operations you want on
+                                    the different parts of the template literal.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
