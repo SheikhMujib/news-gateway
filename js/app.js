@@ -1,9 +1,15 @@
 // Load Categories
 const loadCategories = async () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`
-    const res = await fetch(url);
-    const data = await res.json();
-    displayCategories(data.data.news_category);
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayCategories(data.data.news_category);
+    }
+    catch (error) {
+        console.log(error);
+    }
+
 }
 
 // Display Categories
@@ -26,10 +32,15 @@ const displayCategories = categories => {
 const loadNews = async (category_id) => {
     toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNews(data.data);
-    console.log(data);
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNews(data.data);
+    }
+    catch (error) {
+        console.log(error);
+    }
+
 }
 
 // Display News
@@ -113,11 +124,17 @@ const toggleSpinner = isLoading => {
 // Load News Details
 const loadNewsDetails = async news_id => {
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsDetails(data.data[0]);
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsDetails(data.data[0]);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
+//Display News Details in Modal
 const displayNewsDetails = news => {
     console.log(news);
     const modalTitle = document.getElementById('NewsDetailsModalLabel');
@@ -129,7 +146,5 @@ const displayNewsDetails = news => {
     `
 }
 
-loadCategories('08');
+loadCategories();
 
-// <a onclick="loadNews(${category.category_id})" class="nav-link px-3" href="#">${category.category_name}</a>
-//<button onclick="loadNews('${category.category_id}')" class="nav-link px-3">${category.category_name}</button>
