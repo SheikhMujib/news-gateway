@@ -29,7 +29,7 @@ const loadNews = async (category_id) => {
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data);
-    // console.log(data);
+    console.log(data);
 }
 
 // Display News
@@ -50,8 +50,15 @@ const displayNews = allNews => {
     const newsNumberDiv = document.getElementById('news-numbers-container');
     newsNumberDiv.innerHTML = `<h3 class="text-warning text-center">${allNews.length} items found for this category.</h3>`
 
+    //Sort news by most views
+    allNews.sort((a, b) => {
+        return b.total_view - a.total_view
+    });
+
     // Display all news
     allNews.forEach(news => {
+
+
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-4');
         newsDiv.innerHTML = `
@@ -122,7 +129,7 @@ const displayNewsDetails = news => {
     `
 }
 
-loadCategories();
+loadCategories('08');
 
 // <a onclick="loadNews(${category.category_id})" class="nav-link px-3" href="#">${category.category_name}</a>
 //<button onclick="loadNews('${category.category_id}')" class="nav-link px-3">${category.category_name}</button>
