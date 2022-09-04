@@ -17,6 +17,7 @@ const displayCategories = categories => {
     const categoriesContainer = document.getElementById('categories-container');
 
     categories.forEach(category => {
+        console.log(category);
         const categoryLi = document.createElement('li');
         categoryLi.classList.add('nav-item');
         categoryLi.innerHTML = `
@@ -59,7 +60,7 @@ const displayNews = allNews => {
 
     //To show news numbers
     const newsNumberDiv = document.getElementById('news-numbers-container');
-    newsNumberDiv.innerHTML = `<h3 class="text-warning text-center">${allNews.length} items found for this category.</h3>`
+    newsNumberDiv.innerHTML = `<h3 class="text-warning text-center">${allNews.length} items found for this category. </h3>`
 
     //Sort news by most views
     allNews.sort((a, b) => {
@@ -68,8 +69,6 @@ const displayNews = allNews => {
 
     // Display all news
     allNews.forEach(news => {
-
-
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-4');
         newsDiv.innerHTML = `
@@ -80,7 +79,7 @@ const displayNews = allNews => {
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">${news.title}</h5>
-                <p class="card-text">${news.details}</p>
+                <p class="card-text">${news.details.slice(0, 900)}</p>
             </div>
             <div class="row row-cols-4 pt-3 d-flex justify-content-between">
                 <div class="col">
@@ -89,11 +88,11 @@ const displayNews = allNews => {
                            <img src="${news.author.img}" class="img-fluid rounded-circle">
                         </div>
                         <div class="col">
-                            ${news.author.name}
+                            ${news.author.name ? news.author.name : 'No data available'}
                         </div>
                     </div>
                 </div>
-                <div class="col">${news.total_view}</div>
+                <div class="col">${news.total_view ? news.total_view : 'No data available'}</div>
                 
                 <div class="col">
                     <button onclick="loadNewsDetails('${news._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewsDetailsModal" href="#">
@@ -147,4 +146,4 @@ const displayNewsDetails = news => {
 }
 
 loadCategories();
-
+loadNews('08')
